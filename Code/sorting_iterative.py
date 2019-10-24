@@ -38,14 +38,14 @@ def selection_sort(items):
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
+    TODO: Running time: O(n^2), itterates over n items n times
+    TODO: Memory usage: O(1), not storing any data from items"""
+    for i in range(1, len(items)):
+        curr = items[i]
 
+        j = i-1
+        while j >= 0 and items[j] > curr:
+            items[j+1] = items[j]
+            j -= 1
 
-if __name__ == '__main__':
-    arr = [3, 5, 6, 21, 4, 6, 7, 2, 3, 5, 67]
-    selection_sort(arr)
-    print(arr)
+        items[j+1] = curr
