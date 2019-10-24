@@ -25,11 +25,8 @@ def bubble_sort(items):
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+    Running Time: O(n^2), itterates over n items n times
+    Memory usage: O(1), not storing any data from items"""
     for i in range(len(items)-1):
         min_index = i
         for j in range(i+1, len(items)):
