@@ -9,11 +9,11 @@ def merge(items1, items2):
 
     merged = []
     i, j = 0, 0
-    while i+1 < len(items1) and j+1 < len(items2):
-        while i < len(items1) and items1[i] < items2[j]:
+    while i < len(items1) and j < len(items2):
+        if items1[i] < items2[j]:
             merged.append(items1[i])
             i += 1
-        while j < len(items2) and items2[j] < items1[i]:
+        else:
             merged.append(items2[j])
             j += 1
 
@@ -41,14 +41,11 @@ def merge_sort(items):
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
 
+    if len(items) == 1:
+        return items
+
     mid = len(items) // 2
-    first_half, second_half = items[:mid], items[mid:]
-
-    # TODO: Check if list is so small it's already sorted (base case)
-    # TODO: Split items list into approximately equal halves
-    # TODO: Sort each half by recursively calling merge sort
-    # TODO: Merge sorted halves into one list in sorted order
-
+    return merge(merge_sort(items[:mid]), merge_sort(items[mid:]))
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
@@ -74,3 +71,8 @@ def quick_sort(items, low=None, high=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+
+if __name__ == '__main__':
+    from random import randint
+    lst = [randint(0, 100) for _ in range(100)]
+    print(merge_sort(lst) == sorted(lst))
