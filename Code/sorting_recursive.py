@@ -4,11 +4,21 @@
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until one list is empty
-    # TODO: Find minimum item in both lists and append it to new list
-    # TODO: Append remaining items in non-empty list to new list
+    Running time: O(n + m) iterates over every elem in items1 and items2
+    Memory usage: O(n + m) creates a new list containing elems from items1 and items2"""
+
+    merged = []
+    i, j = 0, 0
+    while i+1 < len(items1) and j+1 < len(items2):
+        while i < len(items1) and items1[i] < items2[j]:
+            merged.append(items1[i])
+            i += 1
+        while j < len(items2) and items2[j] < items1[i]:
+            merged.append(items2[j])
+            j += 1
+
+    return merged + items1[i:] + items2[j:]
+
 
 
 def split_sort_merge(items):
@@ -20,6 +30,9 @@ def split_sort_merge(items):
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half using any other sorting algorithm
     # TODO: Merge sorted halves into one list in sorted order
+    mid = len(items) // 2
+    first, second = items[:mid], items[mid:]
+    return merge(sorted(first), sorted(second))
 
 
 def merge_sort(items):
@@ -27,6 +40,10 @@ def merge_sort(items):
     sorting each recursively, and merging results into a list in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
+
+    mid = len(items) // 2
+    first_half, second_half = items[:mid], items[mid:]
+
     # TODO: Check if list is so small it's already sorted (base case)
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half by recursively calling merge sort
