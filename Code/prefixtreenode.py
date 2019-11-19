@@ -27,7 +27,6 @@ class PrefixTreeNode:
 
     def num_children(self):
         """Return the number of children nodes this prefix tree node has."""
-        # TODO: Determine how many children this node has
         return len(self.children)
 
     def has_child(self, character):
