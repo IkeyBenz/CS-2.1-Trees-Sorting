@@ -46,7 +46,7 @@ def merge_sort(items):
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (TODO: document your method here) from
+    `[low...high]` by choosing a pivot (the first element) from
     that range, moving pivot into index `p`, items less than pivot into range
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
     Running time: O(nLog(n)) but n^2 in worst case?
@@ -65,20 +65,29 @@ def partition(items, low, high):
     items[low], items[p_index-1] = items[p_index-1], items[low]
     return p_index - 1
 
-def quick_sort(items, low=None, high=None):
+def quick_sort(items, low=0, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
     TODO: Best case running time: ??? Why and under what conditions?
     TODO: Worst case running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check if high and low range bounds have default values (not given)
-    # TODO: Check if list or range is so small it's already sorted (base case)
-    # TODO: Partition items in-place around a pivot and get index of pivot
-    # TODO: Sort each sublist range by recursively calling quick sort
 
+    if high is None:
+        high = len(items)
+
+    if high - low <= 1:
+        return items
+
+    p_index = partition(items, low, high)
+
+    quick_sort(items, low, p_index)
+    quick_sort(items, p_index + 1, high)
     
 
 if __name__ == '__main__':
     from random import randint
     lst = [randint(0, 100) for _ in range(100)]
-    print(merge_sort(lst) == sorted(lst))
+    reg = sorted(lst)
+    quick_sort(lst)
+    print(lst)
+    print(lst == reg)
