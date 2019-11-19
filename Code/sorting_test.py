@@ -215,7 +215,7 @@ def get_sort_function():
 
 
 # If using PyTest, change this variable to the sort function you want to test
-sort = merge_sort
+sort = quick_sort
 
 if sort is merge_sort:
     fruitful_sort = sort
