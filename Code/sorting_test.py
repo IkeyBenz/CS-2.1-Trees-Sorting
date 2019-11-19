@@ -224,6 +224,7 @@ if sort is merge_sort:
         _list[::] = fruitful_sort(_list)
 
     sort = sort_impure
+
 if __name__ == '__main__':
     # Get sort function from command-line argument
     # FIXME: This is causing unittest to throw an error
