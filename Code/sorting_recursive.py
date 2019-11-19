@@ -51,17 +51,15 @@ def partition(items, low, high):
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
     Running time: O(high-low)
     Memory usage: O(1) because the swaps happen in place"""
-    # Choose a pivot any way and document your method in docstring above
+
     p = items[low]
     p_index = low + 1
-    # Loop through all items in range [low...high]
+
     for i in range(low + 1, high):
-        # Move items less than pivot into front of range [low...p-1]
         if items[i] < p:
             items[i], items[p_index] = items[p_index], items[i]
             p_index += 1
 
-    # Move pivot item into final position [p] and return index p
     items[low], items[p_index-1] = items[p_index-1], items[low]
     return p_index - 1
 
