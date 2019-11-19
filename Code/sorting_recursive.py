@@ -49,7 +49,7 @@ def partition(items, low, high):
     `[low...high]` by choosing a pivot (the first element) from
     that range, moving pivot into index `p`, items less than pivot into range
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
-    Running time: O(nLog(n)) but n^2 in worst case?
+    Running time: O(high-low)
     Memory usage: O(1) because the swaps happen in place"""
     # Choose a pivot any way and document your method in docstring above
     p = items[low]
@@ -68,9 +68,9 @@ def partition(items, low, high):
 def quick_sort(items, low=0, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
-    TODO: Best case running time: ??? Why and under what conditions?
-    TODO: Worst case running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    Best case running time: O(nLog(n)) 
+    Worst case running time: O(n^2) when we pick the worst pivot every iteration
+    Memory usage: O(1) Everything is done in place"""
 
     if high is None:
         high = len(items)
