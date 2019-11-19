@@ -217,7 +217,13 @@ def get_sort_function():
 # If using PyTest, change this variable to the sort function you want to test
 sort = merge_sort
 
+if sort is merge_sort:
+    fruitful_sort = sort
 
+    def sort_impure(_list):
+        _list[::] = fruitful_sort(_list)
+
+    sort = sort_impure
 if __name__ == '__main__':
     # Get sort function from command-line argument
     # FIXME: This is causing unittest to throw an error

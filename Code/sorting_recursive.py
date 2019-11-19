@@ -38,7 +38,7 @@ def merge_sort(items):
     Running time: O(nLog(n)) - merge() takes time to run for each iteration
     Memory usage: O(n)* - *although technically there is a recursive stack underneath"""
 
-    if len(items) == 1:
+    if len(items) <= 1:
         return items
 
     mid = len(items) // 2
