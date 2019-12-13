@@ -1,5 +1,6 @@
 #!python
 
+
 def fibonacci(n):
     """fibonacci(n) returns the n-th number in the Fibonacci sequence,
     which is defined with the recurrence relation:
@@ -7,12 +8,12 @@ def fibonacci(n):
     fibonacci(1) = 1
     fibonacci(n) = fibonacci(n - 1) + fibonacci(n - 2), for n > 1"""
     # Check if n is negative or not an integer (invalid input)
-    if n < 0 or not isinstance(n, int):
+    if not isinstance(n, int) or n < 0:
         raise ValueError('fibonacci is undefined for n = {!r}'.format(n))
     # Implement fibonacci_recursive, _memoized, and _dynamic below, then
     # change this to call your implementation to verify it passes all tests
-    return fibonacci_recursive(n)
-    # return fibonacci_memoized(n)
+    # return fibonacci_recursive(n)
+    return fibonacci_memoized(n)
     # return fibonacci_dynamic(n)
 
 
@@ -27,10 +28,16 @@ def fibonacci_recursive(n):
 
 
 def fibonacci_memoized(n):
-    # TODO: Memoize the fibonacci function's recursive implementation here
-    pass
-    # Once implemented, change fibonacci (above) to call fibonacci_memoized
-    # to verify that your memoized implementation passes all test cases
+    memo = {}
+
+    def _fibonacci(n):
+        if n == 0 or n == 1:
+            return n
+        if n > 1:
+            memo[n] = fibonacci_memoized(n - 1) + fibonacci_memoized(n - 2)
+        return memo[n]
+
+    return _fibonacci(n)
 
 
 def fibonacci_dynamic(n):
