@@ -45,6 +45,7 @@ class PrefixTree:
     def insert(self, string):
         """Insert the given string into this prefix tree."""
         last_added = self.root
+        node_created = False
         for character in string:
             if last_added.has_child(character):
                 last_added = last_added.get_child(character)
@@ -52,7 +53,10 @@ class PrefixTree:
                 new_node = PrefixTreeNode(character)
                 last_added.add_child(character, new_node)
                 last_added = new_node
+                node_created = True
         last_added.terminal = True
+        if node_created:
+            self.size += 1
 
     def _find_node(self, string):
         """Return a tuple containing the node that terminates the given string
@@ -83,16 +87,23 @@ class PrefixTree:
         with the given prefix string."""
         # Create a list of completions in prefix tree
         completions = []
+
         def visit(curr_prefix, node):
             if node.is_terminal() and prefix in curr_prefix:
                 completions.append(curr_prefix)
-        self._traverse(self.root, '', visit)
+
+        start_node = self._find_node(prefix)
+        if start_node is None:
+            return completions
+
+        self._traverse(start_node, prefix, visit)
         return completions
 
     def strings(self):
         """Return a list of all strings stored in this prefix tree."""
         # Create a list of all strings in prefix tree
         all_strings = []
+
         def visit(prefix, node):
             if node.is_terminal():
                 all_strings.append(prefix)
