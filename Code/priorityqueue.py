@@ -35,14 +35,14 @@ class PriorityQueue(object):
         it, or None if this priority queue is empty."""
         if self.size() == 0:
             return None
-        return self.heap.get_min()
+        return self.heap.get_min()[1]
 
     def dequeue(self):
         """Remove and return the item at the front of this priority queue,
         or raise ValueError if this priority queue is empty."""
         if self.size() == 0:
             raise ValueError('Priority queue is empty and has no front item')
-        return self.heap.delete_min()
+        return self.heap.delete_min()[1]
 
     def push_pop(self, item, priority):
         """Remove and return the item at the front of this priority queue,
@@ -52,3 +52,4 @@ class PriorityQueue(object):
             raise ValueError('Priority queue is empty and has no front item')
         old_min = self.heap.delete_min()
         self.heap.insert((priority, item))
+        return old_min[1]
