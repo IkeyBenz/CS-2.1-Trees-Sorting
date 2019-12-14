@@ -24,11 +24,11 @@ class RecursionTest(unittest.TestCase):
         assert fibonacci(15) == 610
         assert fibonacci(20) == 6765
         assert fibonacci(25) == 75025
-        # TODO: Improve the runtime of your fibonacci function for these cases
+
         # If you're not careful, you may need to be very patient for these...
-        # assert fibonacci(30) == 832040
-        # assert fibonacci(35) == 9227465
-        # assert fibonacci(40) == 102334155
+        assert fibonacci(30) == 832040
+        assert fibonacci(35) == 9227465
+        assert fibonacci(40) == 102334155
 
     def test_fibonacci_with_negative_integers(self):
         # Should raise a ValueError for n < 0
